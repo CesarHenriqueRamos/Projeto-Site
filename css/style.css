@@ -215,6 +215,7 @@ section.descricao-autor{
     padding: 10px 0;
 }
 section.descricao-autor h2{
+    margin-top: 70px;
     padding: 10px;
     font-size: 28px;
 }
@@ -230,7 +231,7 @@ section.descricao-autor img{
     height: 100%;
     max-height: 300px;
     float: right;
-    border-radius: 10px;
+    border-radius: 50%;
 }
 /*especialidade*/
 section.especialidades{
