@@ -1,19 +1,113 @@
-<?php
-    $id = $_GET['id'];
-    $servico = Painel::select('tb_site.servico','id = ?',$id);
-   ?>    
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="palavras-chave,do,meu,site">
+	<meta name="description" content="Descrição do meu website">
+    <meta name="author" content="Cesar Henrique Ramos">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <title>Site Dinamico</title>
+</head>
+<body>
+
+<base base="" />
+
+    <!--componentes de mensagem e load-->
+    <div class="sucesso">Formulário Enviado com Sucesso!</div>
+    <div class="erro">Erro ao Enviar o Formulário</div>
+	<div class="overlay-loading">
+		<img src="images/ajax-loader.gif" />
+	</div><!--overlay-loading-->
+    <header>
+		<div class="container">
+			<div class="logo left"><a href="/">RamosTecnolog</a></div><!--logo-->
+			<nav class="desktop right">
+				<ul>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="index.html#sobre">Sobre</a></li>
+					<li><a href="index.html#servicos">Serviços</a></li>
+					<li><a href="contato.html">Contato</a></li>
+				</ul>
+			</nav>
+			 <nav class="mobile right">
+			 	<div class="botao-menu-mobile">
+			 		<i class="fa fa-bars" aria-hidden="true"></i>
+			 	</div>
+				<ul>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="index.html#sobre">Sobre</a></li>
+					<li><a href="index.html#servicos">Serviços</a></li>
+					<li><a href="contato.html">Contato</a></li>
+				</ul>
+			</nav>
+		<div class="clear"></div><!--clear-->
+		</div><!--center-->
+	</header>
+
+<script>
+var query = location.search.slice(1);
+var partes = query.split('&');
+var data = {};
+partes.forEach(function (parte) {
+    var chaveValor = parte.split('=');
+    var chave = chaveValor[0];
+    var valor = chaveValor[1];
+    data[chave] = valor;
+});
+var dados;
+console.log(data); 
+console.log(data['id']); 
+if(data['id'] == '1'){
+    dados = {'titulo':'Criações de Sites Odontológico','valor':'1.200,00','descricao':'Descrição','imagem1':'images/odonto1.jpg','imagem2':'images/odonto2.jpg','imagem3':'images/odonto3.jpg','imagem4':'images/odonto4.jpg'}
+}else if(data['id'] == '2'){
+    dados = {'titulo':'Criações de Site Automobilístico','valor':'3.200,00','descricao':'Descrição','imagem1':'images/carro1.jpg','imagem2':'images/carro2.jpg','imagem3':'images/carro3.jpg','imagem4':'images/carro4.jpg'}
+}else if(data['id'] == '3'){
+    dados = {'titulo':'Site de Noticia','valor':'1.200,00','descricao':'Descrição','imagem1':'images/info1.jpg','imagem2':'images/info2.jpg','imagem3':'images/info3.jpg','imagem4':'images/info1.jpg'}
+}
+
+
+</script>  
 <Section class="pg-servico">
     <div class="container pg-servico">
-        <h1><?php echo $servico['servico']; ?></h1>
+        <h1><script>document.write(dados['titulo']);</script></h1>
         <div class="box1">
             <h2>Descrição do Serviço:</h2>
-            <p><?php echo $servico['descricao'];?></p>
-            <h3>Valor:R$ <?php echo $servico['valor'];?></h3>
+            <p><script>document.write(dados['descricao'])</script></p>
+            <h3>Valor: R$<script>document.write(dados['valor'])</script></h3>
         </div>
         <div class="box1">
             <h2>Modelo:</h2>
             <div class="img">
-                <img src="<?php echo INCLUDE_PATH?>painel/uploads/<?php echo $servico['modelo'];?>" alt="">
+                <script type="text/javascript">
+                
+                    function slide1(){
+                    document.getElementById('id').src=dados['imagem1'];
+                    setTimeout("slide2()", 3000)
+                    document.getElementById('aId').href="link1.html"
+                    }
+                    function slide2(){
+                    document.getElementById('id').src=dados['imagem2'];
+                    setTimeout("slide3()", 3000)
+                    document.getElementById('aId').href="link2.html"
+                    }
+                      
+                    function slide3(){
+                    document.getElementById('id').src=dados['imagem3'];
+                    setTimeout("slide4()", 3000)
+                    document.getElementById('aId').href="link3.html"
+                    }
+                    function slide4(){
+                    document.getElementById('id').src=dados['imagem4'];
+                    setTimeout("slide1()", 3000)
+                    document.getElementById('aId').href="link3.html"
+                    }
+                    </script>
+                    <body onLoad="slide1()">
+                    <a id="aId"><img id="id"></a>
             </div>
         </div>
         <div class="clear"></div>
@@ -21,14 +115,27 @@
     <div class="contato-container">
     <div class="container">
         <h2>Entre em Contato</h2>
-        <form action="" id="contato" method="post">
-            <input type="text" name="nome" id="" placeholder="Nome...">
-            <input type="email" name="email" id="" placeholder="E-mail...">
-            <input type="text" name="telefone" id="" placeholder="Telefone...">
-            <input type="hidden" name="indentificador" value="indentificador_contato">
-            <textarea name="mensagem" id="" cols="30" rows="10" placeholder="Sua Mensagem..."></textarea>
-            <input type="submit" class="bt" name="acao" value="Enviar">
-        </form>
+        <hr>
+        <h2>WhatsApp: (69) 99995-0364</h2>
+        <h2>Email: cesar252742@gmailcom</h2>
     </div>
 </div>
 </Section>
+<footer>
+    <div class="container">
+        <p>Todos os direitos reservados</p>
+    </div><!--center-->
+</footer>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+<script src="js/constants.js"></script>
+<script src='https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDHPNQxozOzQSZ-djvWGOBUsHkBUoT_qH4'></script>
+<script src="js/scripts.js"></script>
+<script src="js/google_maps.js"></script>
+<script src="js/slider.js"></script>
+<script src="js/slider1.js"></script>
+
+
+<script src="js/formularios.js"></script>
+</body>
+</html>
